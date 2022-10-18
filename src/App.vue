@@ -1,22 +1,35 @@
 <script>
-import { ref } from "vue";
+// import { ref } from "vue";
+import { reactive } from "vue";
 
 export default {
   setup() {
-    const message = ref("Hello Nanda");
+    const user = reactive({
+      name: "Nanda",
+      age: 25,
+    });
 
     setTimeout(() => {
-      console.log(message);
-      message.value = "Apakah kamu bisa mengubahnya?";
+      console.log(user);
+      user.name = "Hady";
+      user.age = "26";
     }, 2000);
 
     return {
-      message,
+      user,
     };
+    // return {
+    //   ...user,
+    // };
   },
 };
 </script>
 
 <template>
-  <h1>{{ message }}</h1>
+  <div>
+    <p>Name: {{ user.name }}</p>
+    <p>Name: {{ user.age }}</p>
+    <!-- <p>Name: {{ name }}</p>
+    <p>Name: {{ age }}</p> -->
+  </div>
 </template>
