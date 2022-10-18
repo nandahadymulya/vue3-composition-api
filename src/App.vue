@@ -7,13 +7,17 @@ export default {
       value: 0,
     });
 
-    const addNum = ref(10);
+    const addNum = ref(1);
 
     const increment = () => {
+      result.value = 5;
       counter.value++;
     };
 
-    const result = computed(() => counter.value + addNum.value);
+    const result = computed({
+      get: () => counter.value + addNum.value,
+      set: (val) => (addNum.value = val),
+    });
 
     return {
       ...toRefs(counter),
