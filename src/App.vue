@@ -1,6 +1,6 @@
 <script>
 // import { ref } from "vue";
-import { reactive } from "vue";
+import { reactive, toRefs } from "vue";
 
 export default {
   setup() {
@@ -15,21 +15,21 @@ export default {
       user.age = "26";
     }, 2000);
 
-    return {
-      user,
-    };
     // return {
-    //   ...user,
+    //   user,
     // };
+    return {
+      ...toRefs(user),
+    };
   },
 };
 </script>
 
 <template>
   <div>
-    <p>Name: {{ user.name }}</p>
-    <p>Name: {{ user.age }}</p>
-    <!-- <p>Name: {{ name }}</p>
-    <p>Name: {{ age }}</p> -->
+    <!-- <p>Name: {{ user.name }}</p>
+    <p>Age: {{ user.age }}</p> -->
+    <p>Name: {{ name }}</p>
+    <p>Age: {{ age }}</p>
   </div>
 </template>
