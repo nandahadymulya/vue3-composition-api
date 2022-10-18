@@ -1,17 +1,19 @@
 <script>
-import { ref } from "vue";
-// import { reactive, toRefs } from "vue";
+// import { ref } from "vue";
+import { reactive, toRefs } from "vue";
 
 export default {
   setup() {
-    const counter = ref(0);
+    const counter = reactive({
+      value: 0,
+    });
 
     const increment = () => {
       counter.value++;
     };
 
     return {
-      counter,
+      ...toRefs(counter),
       increment,
     };
   },
@@ -22,7 +24,7 @@ export default {
   <div>
     <!-- <p>Name: {{ user.name }}</p>
     <p>Age: {{ user.age }}</p> -->
-    <p>Count: {{ counter }}</p>
+    <p>Count: {{ value }}</p>
     <button @click="increment">Increment</button>
     <!-- <p>Age: {{ age }}</p> -->
   </div>
