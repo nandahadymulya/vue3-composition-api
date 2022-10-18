@@ -1,25 +1,18 @@
 <script>
-// import { ref } from "vue";
-import { reactive, toRefs } from "vue";
+import { ref } from "vue";
+// import { reactive, toRefs } from "vue";
 
 export default {
   setup() {
-    const user = reactive({
-      name: "Nanda",
-      age: 25,
-    });
+    const counter = ref(0);
 
-    setTimeout(() => {
-      console.log(user);
-      user.name = "Hady";
-      user.age = "26";
-    }, 2000);
+    const increment = () => {
+      counter.value++;
+    };
 
-    // return {
-    //   user,
-    // };
     return {
-      ...toRefs(user),
+      counter,
+      increment,
     };
   },
 };
@@ -29,7 +22,8 @@ export default {
   <div>
     <!-- <p>Name: {{ user.name }}</p>
     <p>Age: {{ user.age }}</p> -->
-    <p>Name: {{ name }}</p>
-    <p>Age: {{ age }}</p>
+    <p>Count: {{ counter }}</p>
+    <button @click="increment">Increment</button>
+    <!-- <p>Age: {{ age }}</p> -->
   </div>
 </template>
