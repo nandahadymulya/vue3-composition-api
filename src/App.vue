@@ -12,11 +12,23 @@ export default {
       counter.value++;
     };
 
-    watchEffect(() => {
-      console.log(counter.value);
-      // jalan ketika setup jalan atau component di render
-      // memantau counter.value
-    });
+    watchEffect(
+      () => {
+        console.log(counter.value);
+        // jalan ketika setup jalan atau component di render
+        // memantau counter.value
+      },
+      {
+        // flush: "post",
+        // pre: sebelum component di render maka print console.log
+        // post: sesudah
+
+        // for debugging
+        onTrigger(e) {
+          console.log(e);
+        },
+      }
+    );
 
     return {
       ...toRefs(counter),
