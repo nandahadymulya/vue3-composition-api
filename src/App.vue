@@ -1,28 +1,26 @@
 <script>
-import { ref, reactive, toRefs, computed } from "vue";
+import { ref, reactive, toRefs, watchEffect } from "vue";
 
 export default {
   setup() {
     const counter = reactive({
       value: 0,
+      foo: "bar",
     });
 
-    const addNum = ref(1);
-
     const increment = () => {
-      result.value = 5;
       counter.value++;
     };
 
-    const result = computed({
-      get: () => counter.value + addNum.value,
-      set: (val) => (addNum.value = val),
+    watchEffect(() => {
+      console.log(counter.value);
+      // jalan ketika setup jalan atau component di render
+      // memantau counter.value
     });
 
     return {
       ...toRefs(counter),
       increment,
-      result,
     };
   },
 };
@@ -34,6 +32,6 @@ export default {
     <p>Age: {{ user.age }}</p> -->
     <p>Count: {{ value }}</p>
     <button @click="increment">Increment</button>
-    <p>Result: {{ result }}</p>
+    <!-- <p>Result: {{ result }}</p> -->
   </div>
 </template>
