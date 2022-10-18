@@ -24,7 +24,7 @@ export default {
         // post: sesudah
 
         // for debugging
-        onTrigger(e) {
+        onTrack(e) {
           console.log(e);
         },
       }
